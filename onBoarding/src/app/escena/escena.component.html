@@ -1,38 +1,31 @@
 <div class="cards-container">
     <ul class="list-elements">
-        @for (step of onboardingSteps; track step.id){
-        <li>
-            <div class="card">
-                <div [style.background-color]="step.bgcolor" class="image-container">
-                    <img [src]="step.img" alt="{{ step.title }}" class="images">
-                </div>
-                <div class="text-box">
-                    <div class="title-box">
-                        <h4>{{ step.title }}</h4>
-                    </div>
-                    <div class=" description-box">
-                        <p>{{ step.description }}</p>
-                    </div>
-                </div>
-                <div class="animation">
-                    <div class="status">
-                        <!-- aqui afegir els punts o linees     -->
-                        <!-- hacer una funcion que muestre puntos o barras segun la coincidencia con el id. -->
-                        -··
-                    </div>
-                    <div class="arrows">
-                        <!-- aqui afegir les fletxes per canviar la carta -->
-
-                        <button type="button" (click)="previous()" [disabled]="step.id === 0" class="arrow-button"
-                        [style.background-image]="'url(../assets/left.png)'"></button>
-                      
-                      <button type="button" (click)="next()" [disabled]="step.id === 2" class="arrow-button"
-                        [style.background-image]="'url(../assets/right.png)'"></button>
-
-                    </div>
-                </div>
+      <li>
+        <div class="card">
+          <div [style.background-color]="onboardingSteps[counter].bgcolor" class="image-container">
+            <img [src]="onboardingSteps[counter].img" alt="{{ onboardingSteps[counter].title }}" class="images">
+          </div>
+          <div class="text-box">
+            <div class="title-box">
+              <h4>{{ onboardingSteps[counter].title }}</h4>
             </div>
-        </li>
-        }
+            <div class=" description-box">
+              <p>{{ onboardingSteps[counter].description }}</p>
+            </div>
+          </div>
+          <div class="animation">
+            <div class="status" >
+              {{ getStatusDots() }}
+            </div>
+            <div class="arrows">
+                <button type="button" (click)="previous()" [disabled]="isFirstCard()" class="arrow-button"
+                [style.background-image]="getLeftButtonImage()"></button>
+            
+                <button type="button" (click)="next()" [disabled]="isLastCard()" class="arrow-button"
+                [style.background-image]="getRightButtonImage()"></button>
+            </div>
+          </div>
+        </div>
+      </li>
     </ul>
-</div>
+  </div>
