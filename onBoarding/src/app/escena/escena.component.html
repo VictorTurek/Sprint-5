@@ -1,31 +1,41 @@
 <div class="cards-container">
-    <ul class="list-elements">
-      <li>
-        <div class="card">
-          <div [style.background-color]="onboardingSteps[counter].bgcolor" class="image-container">
-            <img [src]="onboardingSteps[counter].img" alt="{{ onboardingSteps[counter].title }}" class="images">
+  <ul class="list-elements">
+    <li>
+      <div class="card">
+        <div [style.background-color]="onboardingSteps[counter].bgcolor" class="image-container">
+          <img [src]="onboardingSteps[counter].img" alt="{{ onboardingSteps[counter].title }}" class="images">
+        </div>
+
+        
+        <div class="text-box">
+          <div class="title-box">
+            <h4>{{ onboardingSteps[counter].title }}</h4>
           </div>
-          <div class="text-box">
-            <div class="title-box">
-              <h4>{{ onboardingSteps[counter].title }}</h4>
-            </div>
-            <div class=" description-box">
-              <p>{{ onboardingSteps[counter].description }}</p>
-            </div>
-          </div>
-          <div class="animation">
-            <div class="status" >
-              {{ getStatusDots() }}
-            </div>
-            <div class="arrows">
-                <button type="button" (click)="previous()" [disabled]="isFirstCard()" class="arrow-button"
-                [style.background-image]="getLeftButtonImage()"></button>
-            
-                <button type="button" (click)="next()" [disabled]="isLastCard()" class="arrow-button"
-                [style.background-image]="getRightButtonImage()"></button>
-            </div>
+          <div class=" description-box">
+            <p>{{ onboardingSteps[counter].description }}</p>
           </div>
         </div>
-      </li>
-    </ul>
-  </div>
+        <div class="animation">
+
+          <div class="status-dots">
+            <span *ngFor="let dot of onboardingSteps; let i = index" (click)="changeCard(i)"
+              [class.active]="currentStep === i"></span>
+          </div>
+
+          <div class="navigation-buttons">
+
+            <button type="button" (click)="previous()" [disabled]="isFirstCard()" class="arrow-button"
+              [style.background-image]="getLeftButtonImage()"></button>
+
+            <button type="button" (click)="next()" [disabled]="isLastCard()" class="arrow-button"
+              [style.background-image]="getRightButtonImage()"></button>
+
+          </div>
+
+          
+
+        </div>
+      </div>
+    </li>
+  </ul>
+</div>
